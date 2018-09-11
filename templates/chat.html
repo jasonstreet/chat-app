@@ -4,10 +4,14 @@
     </head>
     <body>
         <h2>Welcome, {{ username }}</h2>
+        <form method="POST">
+            <label for="usermessage">Say something:</label>
+            <input type="text" id="usermessage" name="usermessage">
+            <button>Send</button>
+        </form>
         {% for message in chat_messages %}
         <p>{{ message }}</p>
         {% endfor %}
-        
         
         <script>
             setTimeout(function() {
