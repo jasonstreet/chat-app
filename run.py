@@ -16,7 +16,6 @@ def add_messages(username, message):
             username.title(), 
             message))
 
-
 def get_all_messages():
     """Get all of the messages and separate with a break"""
     messages = []
@@ -26,7 +25,7 @@ def get_all_messages():
 
 @app.route('/', methods=["GET", "POST"])
 def index():
-    """Main page with instructions"""
+    """Main page"""
     
     #Post request
     if request.method == "POST":
@@ -35,10 +34,13 @@ def index():
     return render_template("index.html")
     
     
-@app.route('/<username>')
+@app.route('/<username>', methods=["GET", "POST"])
 def user(username):
     """display chat messages"""
     messages = get_all_messages()
+        #Post request
+    if request.method == "POST":
+        return redirect(request.form["usermessage"])
     return render_template("chat.html", username=username, chat_messages=messages)
     
 
